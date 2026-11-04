@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancer Cell Detection - HER2 DISH Analysis System</title>
+    <style>
+        :root {
+            --primary: #1976d2;
+            --primary-dark: #115293;
+            --success: #2e7d32;
+            --danger: #d32f2f;
+            --border: #e0e0e0;
+            --bg-light: #f8f9fa;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        body { background-color: #f1f3f6; color: #202124; padding: 24px; }
+        .container { max-width: 1200px; margin: 0 auto; background: #fff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); overflow: hidden; }
+        header { background: #fff; padding: 20px 30px; border-bottom: 2px solid var(--border); }
+        h1 { font-size: 24px; font-weight: 600; color: #1a1a1a; }
+        p.subtitle { color: #5f6368; font-size: 14px; margin-top: 4px; }
+        .main-content { padding: 30px; }
+        
+        /* Upload Card */
+        .card { background: #fafafa; border: 1px solid var(--border); border-radius: 6px; padding: 20px; margin-bottom: 24px; }
+        .form-row { display: flex; gap: 20px; align-items: flex-end; margin-bottom: 16px; flex-wrap: wrap; }
+        .form-group { display: flex; flex-direction: column; gap: 6px; }
+        label { font-size: 13px; font-weight: 600; color: #3c4043; text-transform: uppercase; letter-spacing: 0.5px; }
+        input[type="text"], input[type="file"], select { padding: 10px 14px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; background: #fff; }
+        button.btn-primary { background: var(--primary); color: #fff; border: none; padding: 11px 24px; border-radius: 4px; font-weight: 600; cursor: pointer; transition: 0.2s; }
+        button.btn-primary:hover { background: var(--primary-dark); }
+        
+        /* Status Banner */
+        .alert-success { background: #e8f5e9; border-left: 4px solid var(--success); color: #1b5e20; padding: 12px 16px; border-radius: 4px; margin-bottom: 20px; font-weight: 500; font-size: 14px; }
+        
+        /* Metric Badges */
+        .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+        .metric-card { background: #fff; border: 1px solid var(--border); border-radius: 6px; padding: 16px; text-align: center; }
+        .metric-title { font-size: 12px; font-weight: 600; color: #5f6368; text-transform: uppercase; }
+        .metric-value { font-size: 26px; font-weight: 700; color: #1a73e8; margin-top: 6px; }
+        .status-positive { color: #c62828 !important; }
+        .status-negative { color: #2e7d32 !important; }
+
+        /* Gallery */
+        .section-title { font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #333; }
+        .gallery-container { overflow-x: auto; white-space: nowrap; padding-bottom: 10px; margin-bottom: 24px; border: 1px solid var(--border); border-radius: 6px; background: #fafafa; padding: 12px; }
+        .gallery-container img { max-height: 140px; border-radius: 4px; }
+
+        /* Slide View */
+        .slide-viewer { text-align: center; border: 1px solid var(--border); border-radius: 6px; background: #000; padding: 10px; }
+        .slide-viewer img { max-width: 100%; height: auto; border-radius: 4px; }
+
+        /* Legend */
+        .legend { display: flex; gap: 20px; font-size: 13px; margin-top: 12px; justify-content: center; }
+        .legend-item { display: flex; align-items: center; gap: 6px; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+        .dot-green { background: #00c853; border-radius: 2px; }
+        .dot-blue { background: #1565c0; }
+        .dot-red { background: #d50000; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Cancer Cell Detection &amp; HER2 Quantification</h1>
+            <p class="subtitle">Deep Learning Assisted Brightfield Dual In Situ Hybridization (DISH) System &bull; Based on Micaraseth et al. (2026)</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Upload Form -->
+            <div class="card">
+                <form method="POST" action="/analyze" enctype="multipart/form-data">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="patient_id">Patient ID</label>
+                            <input type="text" id="patient_id" name="patient_id" value="{{ report.patient_id if report else 'c-001' }}" required style="width: 160px;">
+                        </div>
+                        <div class="form-group" style="flex-grow: 1;">
+                            <label for="slide_file">Upload Cell Image (TIFF / PNG / JPG)</label>
+                            <input type="file" id="slide_file" name="slide_file" accept=".png,.jpg,.jpeg,.tif,.tiff">
+                        </div>
+                        <div class="form-group">
+                            <label for="sample_select">Or Select Sample Test Slide</label>
+                            <select id="sample_select" name="sample_select">
+                                <option value="">-- Choose Sample --</option>
+                                <option value="sample_positive_patient_c001.png">Sample 1: Amplified (HER2+)</option>
+                                <option value="sample_negative_patient_c002.png">Sample 2: Non-Amplified (HER2-)</option>
+                                <option value="sample_borderline_patient_c003.png">Sample 3: Borderline Case</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn-primary">Run Analysis</button>
+                    </div>
+                </form>
+            </div>
+
+            {% if report %}
+            <!-- Notification -->
+            <div class="alert-success">
+                &#10004; Image processing complete for Patient ID: <strong>{{ report.patient_id }}</strong>
+            </div>
+
+            <!-- Metrics Grid -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-title">Selected Nuclei</div>
+                    <div class="metric-value">{{ report.total_cells }}</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">Sum Black (HER2) / Sum Red (CEP17)</div>
+                    <div class="metric-value">{{ report.total_her2 }} / {{ report.total_cep17 }}</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">HER2 / CEP17 Ratio</div>
+                    <div class="metric-value">{{ report.her2_cep17_ratio }}</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">Avg HER2 Copy / Cell</div>
+                    <div class="metric-value">{{ report.avg_her2_per_cell }}</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">Diagnostic Status</div>
+                    <div class="metric-value {{ 'status-positive' if 'POSITIVE' in report.status else 'status-negative' }}">
+                        {{ report.status }}
+                    </div>
+                </div>
+            </div>
+
+            <p style="margin-bottom: 24px; font-size: 14px; color: #444; background: #fff; padding: 12px; border: 1px solid var(--border); border-radius: 4px;">
+                <strong>Clinical Interpretation:</strong> {{ report.clinical_interpretation }}
+            </p>
+
+            <!-- Cropped Cells Gallery -->
+            <div class="section-title">Segmented Nuclei Gallery (High-Confidence Crops)</div>
+            <div class="gallery-container">
+                <img src="/outputs/{{ report.patient_id }}_cell_gallery.png" alt="Cropped cell gallery">
+            </div>
+
+            <!-- Pipeline 4-Stage Comparison -->
+            <div class="section-title">4-Stage Pipeline Analysis (Figure 7 Reproduction)</div>
+            <div class="gallery-container">
+                <img src="/outputs/{{ report.patient_id }}_figure7_stages.png" alt="Figure 7 pipeline stages" style="max-height: 480px;">
+            </div>
+
+            <!-- Full Annotated Slide -->
+            <div class="section-title">WSI Crop View with Nuclei Localizations (Figure 4)</div>
+            <div class="slide-viewer">
+                <img src="/outputs/{{ report.patient_id }}_annotated_slide.png" alt="Annotated slide">
+            </div>
+
+            <div class="legend">
+                <div class="legend-item"><span class="dot dot-green"></span> Selected Nucleus Bounding Box</div>
+                <div class="legend-item"><span class="dot dot-blue"></span> Black HER2 Gene Signal (Encircled)</div>
+                <div class="legend-item"><span class="dot dot-red"></span> Red CEP17 Centromere Signal (Encircled)</div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

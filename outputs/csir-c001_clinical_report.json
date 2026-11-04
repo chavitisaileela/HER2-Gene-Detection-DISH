@@ -1,0 +1,343 @@
+{
+    "patient_id": "csir-c001",
+    "total_cells": 30,
+    "total_her2": 123,
+    "total_cep17": 31,
+    "her2_cep17_ratio": 3.97,
+    "avg_her2_per_cell": 4.1,
+    "avg_cep17_per_cell": 1.03,
+    "status": "POSITIVE",
+    "clinical_interpretation": "HER2 gene amplification detected. Eligible for HER2-targeted therapy (e.g., Trastuzumab).",
+    "cell_breakdown": [
+        {
+            "cell_id": 1,
+            "center": [
+                938,
+                1393
+            ],
+            "her2_count": 4,
+            "cep17_count": 1,
+            "ratio": 4.0,
+            "confidence": 0.943
+        },
+        {
+            "cell_id": 2,
+            "center": [
+                1260,
+                333
+            ],
+            "her2_count": 4,
+            "cep17_count": 1,
+            "ratio": 4.0,
+            "confidence": 0.9419
+        },
+        {
+            "cell_id": 3,
+            "center": [
+                1047,
+                354
+            ],
+            "her2_count": 1,
+            "cep17_count": 2,
+            "ratio": 0.5,
+            "confidence": 0.9416
+        },
+        {
+            "cell_id": 4,
+            "center": [
+                874,
+                923
+            ],
+            "her2_count": 5,
+            "cep17_count": 2,
+            "ratio": 2.5,
+            "confidence": 0.94
+        },
+        {
+            "cell_id": 5,
+            "center": [
+                776,
+                587
+            ],
+            "her2_count": 3,
+            "cep17_count": 0,
+            "ratio": null,
+            "confidence": 0.9394
+        },
+        {
+            "cell_id": 6,
+            "center": [
+                749,
+                1371
+            ],
+            "her2_count": 3,
+            "cep17_count": 0,
+            "ratio": null,
+            "confidence": 0.9372
+        },
+        {
+            "cell_id": 7,
+            "center": [
+                669,
+                168
+            ],
+            "her2_count": 4,
+            "cep17_count": 1,
+            "ratio": 4.0,
+            "confidence": 0.9371
+        },
+        {
+            "cell_id": 8,
+            "center": [
+                1240,
+                1289
+            ],
+            "her2_count": 5,
+            "cep17_count": 1,
+            "ratio": 5.0,
+            "confidence": 0.9347
+        },
+        {
+            "cell_id": 9,
+            "center": [
+                205,
+                815
+            ],
+            "her2_count": 6,
+            "cep17_count": 1,
+            "ratio": 6.0,
+            "confidence": 0.9324
+        },
+        {
+            "cell_id": 10,
+            "center": [
+                781,
+                155
+            ],
+            "her2_count": 3,
+            "cep17_count": 1,
+            "ratio": 3.0,
+            "confidence": 0.9318
+        },
+        {
+            "cell_id": 11,
+            "center": [
+                1380,
+                123
+            ],
+            "her2_count": 3,
+            "cep17_count": 1,
+            "ratio": 3.0,
+            "confidence": 0.9309
+        },
+        {
+            "cell_id": 12,
+            "center": [
+                1311,
+                736
+            ],
+            "her2_count": 4,
+            "cep17_count": 2,
+            "ratio": 2.0,
+            "confidence": 0.9255
+        },
+        {
+            "cell_id": 13,
+            "center": [
+                491,
+                1332
+            ],
+            "her2_count": 4,
+            "cep17_count": 2,
+            "ratio": 2.0,
+            "confidence": 0.9225
+        },
+        {
+            "cell_id": 14,
+            "center": [
+                1388,
+                796
+            ],
+            "her2_count": 4,
+            "cep17_count": 0,
+            "ratio": null,
+            "confidence": 0.9218
+        },
+        {
+            "cell_id": 15,
+            "center": [
+                108,
+                1139
+            ],
+            "her2_count": 2,
+            "cep17_count": 0,
+            "ratio": null,
+            "confidence": 0.9213
+        },
+        {
+            "cell_id": 16,
+            "center": [
+                869,
+                1057
+            ],
+            "her2_count": 4,
+            "cep17_count": 1,
+            "ratio": 4.0,
+            "confidence": 0.9177
+        },
+        {
+            "cell_id": 17,
+            "center": [
+                356,
+                160
+            ],
+            "her2_count": 2,
+            "cep17_count": 1,
+            "ratio": 2.0,
+            "confidence": 0.9171
+        },
+        {
+            "cell_id": 18,
+            "center": [
+                1106,
+                705
+            ],
+            "her2_count": 5,
+            "cep17_count": 1,
+            "ratio": 5.0,
+            "confidence": 0.9169
+        },
+        {
+            "cell_id": 19,
+            "center": [
+                904,
+                1270
+            ],
+            "her2_count": 4,
+            "cep17_count": 2,
+            "ratio": 2.0,
+            "confidence": 0.9166
+        },
+        {
+            "cell_id": 20,
+            "center": [
+                1003,
+                814
+            ],
+            "her2_count": 5,
+            "cep17_count": 0,
+            "ratio": null,
+            "confidence": 0.909
+        },
+        {
+            "cell_id": 21,
+            "center": [
+                585,
+                1274
+            ],
+            "her2_count": 6,
+            "cep17_count": 0,
+            "ratio": null,
+            "confidence": 0.905
+        },
+        {
+            "cell_id": 22,
+            "center": [
+                937,
+                357
+            ],
+            "her2_count": 3,
+            "cep17_count": 1,
+            "ratio": 3.0,
+            "confidence": 0.8995
+        },
+        {
+            "cell_id": 23,
+            "center": [
+                883,
+                249
+            ],
+            "her2_count": 6,
+            "cep17_count": 2,
+            "ratio": 3.0,
+            "confidence": 0.8867
+        },
+        {
+            "cell_id": 24,
+            "center": [
+                127,
+                1243
+            ],
+            "her2_count": 5,
+            "cep17_count": 0,
+            "ratio": null,
+            "confidence": 0.8865
+        },
+        {
+            "cell_id": 25,
+            "center": [
+                823,
+                391
+            ],
+            "her2_count": 3,
+            "cep17_count": 2,
+            "ratio": 1.5,
+            "confidence": 0.886
+        },
+        {
+            "cell_id": 26,
+            "center": [
+                282,
+                1164
+            ],
+            "her2_count": 4,
+            "cep17_count": 2,
+            "ratio": 2.0,
+            "confidence": 0.8751
+        },
+        {
+            "cell_id": 27,
+            "center": [
+                509,
+                895
+            ],
+            "her2_count": 7,
+            "cep17_count": 1,
+            "ratio": 7.0,
+            "confidence": 0.8735
+        },
+        {
+            "cell_id": 28,
+            "center": [
+                186,
+                202
+            ],
+            "her2_count": 6,
+            "cep17_count": 1,
+            "ratio": 6.0,
+            "confidence": 0.8545
+        },
+        {
+            "cell_id": 29,
+            "center": [
+                1361,
+                1342
+            ],
+            "her2_count": 4,
+            "cep17_count": 1,
+            "ratio": 4.0,
+            "confidence": 0.8456
+        },
+        {
+            "cell_id": 30,
+            "center": [
+                985,
+                604
+            ],
+            "her2_count": 4,
+            "cep17_count": 1,
+            "ratio": 4.0,
+            "confidence": 0.8018
+        }
+    ]
+}
