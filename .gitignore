@@ -1,0 +1,15 @@
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+src/__pycache__/
+
+# Large temporary downloads & virtual environments
+*.crdownload
+venv/
+.env/
+env/
+.vscode/
+
+# Keep outputs directory structure but ignore ad-hoc temporary runs if needed
+# (leave open to track demo results)
